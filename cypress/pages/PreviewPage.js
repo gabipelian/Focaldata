@@ -1,25 +1,32 @@
 import {commonMethods} from "../common/CommonMethods";
+import {preview} from "../data/Selectors";
 
 export class PreviewPage {
     select45_54() {
-        commonMethods.clickOnElement('[data-cy="response-option-4"]');
+        commonMethods.clickOnElement(preview.AGE);
     };
 
     clickOnNext() {
-        commonMethods.clickOnElementByText('.MuiGrid-root.mui-cache-rfnosa', 'Next');
+        commonMethods.clickOnElementByText(preview.NEXT, 'Next');
     };
 
     selectMale() {
-        commonMethods.clickOnElement('[data-cy="response-option-0"]');
+        commonMethods.clickOnElement(preview.GENDER);
     };
 
     selectGreaterLondon() {
-        commonMethods.clickOnElement('[data-cy="response-option-4"]');
+        commonMethods.clickOnElement(preview.LOCATION);
     };
 
     assertPinnedOptions() {
-        commonMethods.assertElementContainsExpectedText('[data-cy="response-option-2"]', 'Fries');
-        commonMethods.assertElementContainsExpectedText('[data-cy="response-option-6"]', 'Fish');
+        commonMethods.assertElementContainsExpectedText(preview.ASSERT_PINNED_3, 'Fries');
+        commonMethods.assertElementContainsExpectedText(preview.ASSERT_PINNED_7, 'Fish');
+    };
+
+    assertPinnedOptionMatrix() {
+        commonMethods.assertElementContainsExpectedText(preview.ASSERT_PINNED_ROW_MATRIX, 'Bad');
+        commonMethods.assertElementContainsExpectedText(preview.ASSERT_PINNED_3_MATRIX, 'Fries');
+        commonMethods.assertElementContainsExpectedText(preview.ASSERT_PINNED_7_MATRIX, 'Fish');
     };
 
 }

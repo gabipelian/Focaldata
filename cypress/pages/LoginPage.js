@@ -1,4 +1,5 @@
 import {commonMethods} from "../common/CommonMethods";
+import {login} from "../data/Selectors";
 
 export class LoginPage {
     openLoginPage() {
@@ -6,15 +7,15 @@ export class LoginPage {
     };
 
     insertEmail(email) {
-        commonMethods.typeTextIntoElement('[aria-label="Input"]', email);
+        commonMethods.typeTextIntoElement(login.INSERT_EMAIL, email);
     };
 
     insertPassword(password) {
-        commonMethods.typeTextIntoElement('[aria-label="Password input"]', password);
+        commonMethods.typeTextIntoElement(login.INSERT_PASSWORD, password);
     };
 
     clickOnLoginButton() {
-        commonMethods.clickOnElement('[type="submit"]');
+        commonMethods.clickOnElement(login.LOGIN_BUTTON);
     };
 
     login(email, password) {
@@ -23,7 +24,6 @@ export class LoginPage {
         this.insertPassword(password);
         this.clickOnLoginButton();
         this.clickOnLoginButton();
-        //cy.wait(1000);
     }
 }
 

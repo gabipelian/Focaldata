@@ -1,7 +1,9 @@
 import {loginPage} from "../pages/LoginPage";
 import {projectsPage} from "../pages/ProjectsPage";
 import {surveyPage} from "../pages/SurveyPage";
+import {preview} from "../data/Selectors";
 import {previewPage} from "../pages/PreviewPage";
+import {commonMethods} from "../common/CommonMethods";
 
 const EMAIL = Cypress.env('email');
 const PASSWORD = Cypress.env('password');
@@ -34,12 +36,11 @@ describe('Pin response feature should work as expected', () => {
             projectsPage.addNewProject();
             surveyPage.clickOnToSurveyButton();
             surveyPage.clickOnAddButton();
-            cy.wait(1000);
             surveyPage.selectTypeOfQuestion(data.typeOfQuestion);
-            cy.wait(1000);
             if (data.typeOfQuestion === 'Matrix (grid)') {
                 surveyPage.typeYourQuestionMatrix('What is your favourite type of food?');
                 surveyPage.selectRandomisedMatrix();
+                surveyPage.addRow();
                 surveyPage.add5Responses();
                 surveyPage.addOptionsRows();
                 surveyPage.addOptionsColumns();
@@ -47,6 +48,14 @@ describe('Pin response feature should work as expected', () => {
                 surveyPage.pinThirdOptionColumns();
                 surveyPage.pinSeventhOptionColumns();
                 surveyPage.assertPinsMatrix();
+                surveyPage.spyingOnRedirect();
+                previewPage.select45_54();
+                previewPage.clickOnNext();
+                previewPage.selectMale();
+                previewPage.clickOnNext();
+                previewPage.selectGreaterLondon();
+                previewPage.clickOnNext();
+                previewPage.assertPinnedOptionMatrix();
             } else {
                 surveyPage.typeYourQuestion('What is your favourite type of food?');
                 surveyPage.selectRandomised();
@@ -55,9 +64,16 @@ describe('Pin response feature should work as expected', () => {
                 surveyPage.pinThirdOption();
                 surveyPage.pinSeventhOption();
                 surveyPage.assertPins();
+                surveyPage.spyingOnRedirect();
+                previewPage.select45_54();
+                previewPage.clickOnNext();
+                previewPage.selectMale();
+                previewPage.clickOnNext();
+                previewPage.selectGreaterLondon();
+                previewPage.clickOnNext();
+                previewPage.assertPinnedOptions();
             }
                 projectsPage.deleteProject();
-
         });
     });
 })

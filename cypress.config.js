@@ -1,6 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  projectId: 'kh4h8b',
   video: false,
   screenshotOnRunFailure: false,
   numTestsKeptInMemory: 0,

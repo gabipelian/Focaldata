@@ -1,17 +1,34 @@
 import {commonMethods} from "../common/CommonMethods";
+import {projects} from "../data/Selectors";
 
 export class ProjectsPage {
     clickOnCreateNewProject() {
-        commonMethods.clickOnElement('[data-cy="dialog-button-opener"]');
+        commonMethods.clickOnElement(projects.CREATE_NEW_PROJECT);
     };
 
     addProjectTitle(title) {
-        commonMethods.typeTextIntoElement('[data-cy="dialog-project-title"]', title);
+        commonMethods.typeTextIntoElement(projects.ADD_PROJECT_TITLE, title);
     };
 
     clickOnCreateNewProjectInModal() {
-        commonMethods.clickOnElement('[data-cy="dialog-primary-button"]');
+        commonMethods.clickOnElement(projects.CREATE_NEW_PROJECT_IN_MODAL);
     };
+
+    visitProjectsUrl() {
+        commonMethods.visitPage('https://dashboard.focaldata.dev/projects');
+    }
+
+    clickOnProjectMenu() {
+        commonMethods.clickOnElementForceTrueByIndex(projects.PROJECT_MENU, 0);
+    };
+
+    clickOnDeleteProject() {
+        commonMethods.clickOnElement(projects.DELETE_PROJECT);
+    };
+
+    clickOnDelete() {
+        commonMethods.clickOnElement(projects.DELETE);
+    }
 
     addNewProject() {
         this.clickOnCreateNewProject();
@@ -20,10 +37,10 @@ export class ProjectsPage {
     };
 
     deleteProject() {
-        commonMethods.visitPage('https://dashboard.focaldata.dev/projects');
-        commonMethods.clickOnElementForceTrueByIndex('[data-testid="MoreVertIcon"]', 0);
-        commonMethods.clickOnElement('[data-testid="DeleteOutlineIcon"]');
-        commonMethods.clickOnElement('[data-cy="dialog-primary-button"]');
+        this.visitProjectsUrl();
+        this.clickOnProjectMenu();
+        this.clickOnDeleteProject();
+        this.clickOnDelete();
     };
 }
 

@@ -1,29 +1,34 @@
 import {commonMethods} from "../common/CommonMethods";
+import {preview, survey} from "../data/Selectors";
 
 export class SurveyPage {
     clickOnToSurveyButton() {
-        commonMethods.clickOnElement('.MuiGrid-grid-sm-5 button');
+        commonMethods.clickOnElement(survey.TO_SURVEY_BUTTON);
     };
 
     clickOnAddButton() {
-        commonMethods.clickOnElementForceTrueByIndex('[data-testid="AddIcon"]', 0);
+        commonMethods.clickOnElementForceTrueByIndex(survey.ADD_BUTTON, 0);
     };
 
     selectTypeOfQuestion(typeOfQuestion) {
-        commonMethods.clickOnElementByText('div[class="MuiGrid-root tss-fil0uv-customMenuItem mui-cache-rfnosa"]', typeOfQuestion);
+        commonMethods.clickOnElementByText(survey.TYPE_OF_QUESTION, typeOfQuestion);
     };
 
     typeYourQuestion(text) {
-        commonMethods.typeTextIntoElement('[aria-label="Basic question header input"]', text);
+        commonMethods.typeTextIntoElement(survey.YOUR_QUESTION, text);
     };
 
     selectRandomised() {
-        commonMethods.clickOnElement('.MuiGrid-root .mui-cache-1t969rj');
-        commonMethods.clickOnElement('[data-testid="select-menu-item-1"]');
+        commonMethods.clickOnElement(survey.SELECT);
+        commonMethods.clickOnElement(survey.RANDOMISED);
     };
 
     typeOption(index, text) {
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Basic question response option"]', index, text);
+        commonMethods.typeTextIntoElementByIndex(survey.TYPE_OPTION, index, text);
+    };
+
+    addRow() {
+        commonMethods.clickOnElement('[aria-label="Add row"]');
     };
 
     addOptions() {
@@ -36,79 +41,87 @@ export class SurveyPage {
         this.typeOption(6, 'Fish');
     }
 
-    checkNoneOfThese() {
-        commonMethods.clickOnElementForceTrueByIndex('[data-testid="CheckBoxOutlineBlankIcon"]', 3);
-    }
-
     add5Responses() {
-        commonMethods.clickOnElement('[aria-label="Add response"]');
-        commonMethods.clickOnElement('[aria-label="Add response"]');
-        commonMethods.clickOnElement('[aria-label="Add response"]');
-        commonMethods.clickOnElement('[aria-label="Add response"]');
-        commonMethods.clickOnElement('[aria-label="Add response"]');
+        commonMethods.clickOnElement(survey.ADD_RESPONSE);
+        commonMethods.clickOnElement(survey.ADD_RESPONSE);
+        commonMethods.clickOnElement(survey.ADD_RESPONSE);
+        commonMethods.clickOnElement(survey.ADD_RESPONSE);
+        commonMethods.clickOnElement(survey.ADD_RESPONSE);
     };
 
     pinThirdOption() {
-        commonMethods.clickOnElementForceTrueByIndex('[data-testid="MoreHorizIcon"]', 2);
-        commonMethods.clickOnElementByText('ul:nth-child(1) > div:nth-child(2)', 'Pin response');
+        commonMethods.clickOnElementForceTrueByIndex(survey.OPTION, 2);
+        commonMethods.clickOnElementByText(survey.PIN, 'Pin response');
     };
 
     pinSeventhOption() {
-        commonMethods.clickOnElementForceTrueByIndex('[data-testid="MoreHorizIcon"]', 6);
-        commonMethods.clickOnElementByText('ul:nth-child(1) > div:nth-child(2)', 'Pin response');
+        commonMethods.clickOnElementForceTrueByIndex(survey.OPTION, 6);
+        commonMethods.clickOnElementByText(survey.PIN, 'Pin response');
     };
 
     assertPins() {
-        commonMethods.assertElementIsVisible('.MuiList-root li:nth-child(3) [aria-label="Unpin response option"]');
-        commonMethods.assertElementIsVisible('.MuiList-root li:nth-child(7) [aria-label="Unpin response option"]');
+        commonMethods.assertElementIsVisible(survey.PIN_3);
+        commonMethods.assertElementIsVisible(survey.PIN_7);
     };
 
     typeYourQuestionMatrix(text) {
-        commonMethods.typeTextIntoElement('.public-DraftStyleDefault-block', text);
+        commonMethods.typeTextIntoElement(survey.YOUR_QUESTION_MATRIX, text);
     };
 
     selectRandomisedMatrix() {
-        commonMethods.clickOnElementForceTrueByIndex('[aria-label="Select"]', 0);
-        commonMethods.clickOnElement('[data-testid="select-menu-item-1"]');
-        commonMethods.clickOnElementForceTrueByIndex('[aria-label="Select"]', 1);
-        commonMethods.clickOnElement('[data-testid="select-menu-item-1"]');
+        commonMethods.clickOnElementForceTrueByIndex(survey.SELECT_MATRIX, 0);
+        commonMethods.clickOnElement(survey.RANDOMISED_MATRIX);
+        commonMethods.clickOnElementForceTrueByIndex(survey.SELECT_MATRIX, 1);
+        commonMethods.clickOnElement(survey.RANDOMISED_MATRIX);
     };
 
     addOptionsRows() {
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix row"]', 0, 'Good');
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix row"]', 1, 'Bad');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_ROWS, 0, 'Good');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_ROWS, 1, 'Bad');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_ROWS, 2, 'Neutral');
     };
 
     addOptionsColumns() {
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix response option"]', 0, 'Pizza');
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix response option"]', 1, 'Burger');
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix response option"]', 2, 'Fries');
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix response option"]', 3, 'Soup');
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix response option"]', 4, 'Salad');
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix response option"]', 5, 'Pasta');
-        commonMethods.typeTextIntoElementByIndex('[aria-label="Matrix response option"]', 6, 'Fish');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_COLUMNS, 0, 'Pizza');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_COLUMNS, 1, 'Burger');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_COLUMNS, 2, 'Fries');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_COLUMNS, 3, 'Soup');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_COLUMNS, 4, 'Salad');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_COLUMNS, 5, 'Pasta');
+        commonMethods.typeTextIntoElementByIndex(survey.OPTIONS_COLUMNS, 6, 'Fish');
     };
 
     pinSecondOptionRows() {
-        commonMethods.clickOnElementForceTrueByIndex('[aria-label="Icon kebab"]', 3);
-        commonMethods.clickOnElementByText('ul > div:nth-child(2)', 'Pin response');
+        commonMethods.clickOnElementForceTrueByIndex(survey.OPTION_MATRIX, 3);
+        commonMethods.clickOnElementByText(survey.PIN_SECOND_OPTION_ROWS, 'Pin response');
     };
 
     pinThirdOptionColumns() {
-        commonMethods.clickOnElementForceTrueByIndex('[aria-label="Icon kebab"]', 6);
-        commonMethods.clickOnElementForceTrueByIndex('.mui-cache-1qkf1a6 > ul > div > li > span', 2);
+        commonMethods.clickOnElementForceTrueByIndex(survey.OPTION_MATRIX, 7);
+        commonMethods.clickOnElementForceTrueByIndex(survey.PIN_OPTION_COLUMNS, 2);
     };
 
     pinSeventhOptionColumns() {
-        commonMethods.clickOnElementForceTrueByIndex('[aria-label="Icon kebab"]', 10);
-        cy.wait(2000);
-        commonMethods.clickOnElementForceTrueByIndex('.mui-cache-1qkf1a6 > ul > div > li > span', 2);
+        commonMethods.clickOnElementForceTrueByIndex(survey.OPTION_MATRIX, 11);
+        commonMethods.clickOnElementForceTrueByIndex(survey.PIN_OPTION_COLUMNS, 2);
     };
 
     assertPinsMatrix() {
-        commonMethods.assertElementIsVisible('[aria-label="Unpin row"]');
-        commonMethods.assertElementIsVisible('li:nth-child(3) [aria-label="Unpin response option"]:nth-child(2)');
-        commonMethods.assertElementIsVisible('li:nth-child(7) [aria-label="Unpin response option"]:nth-child(2)');
+        commonMethods.assertElementIsVisible(survey.ASSERT_PIN);
+        commonMethods.assertElementIsVisible(survey.ASSERT_PIN_3);
+        commonMethods.assertElementIsVisible(survey.ASSERT_PIN_7);
+    };
+
+    spyingOnRedirect() {
+        cy.window().then((win) => {
+            cy.spy(win, 'open').as('redirect')
+        });
+
+       commonMethods.clickOnElementByText(survey.PREVIEW_BUTTON, 'Preview');
+
+        cy.get('@redirect').should('be.calledWith', Cypress.sinon.match.string).then(stub => {
+            cy.visit(stub.args[0][0]);
+        });
     };
 }
 

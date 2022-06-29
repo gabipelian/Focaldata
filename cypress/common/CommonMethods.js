@@ -9,9 +9,9 @@ export class CommonMethods {
         cy.get(webElement).should('be.visible').click();
     };
 
-    //this method wll click on an element by text
+    //this method will click on an element by text
     clickOnElementByText(webElement, text) {
-        cy.get(webElement).should('be.visible').contains(text).click({force: true});
+        cy.get(webElement).should('be.visible').contains(text).click({force: true}).wait(300);
     };
 
     //this method will type any text into an input web element that is inserted as parameter by index
@@ -26,7 +26,7 @@ export class CommonMethods {
 
     //this method will click on any web element by index inserted as parameters, with force true
     clickOnElementForceTrueByIndex(webElement, index) {
-        cy.get(webElement).eq(index).click({force: true});
+        cy.get(webElement).eq(index).wait(300).click({force: true});
     };
 
     //this method will type any text into an input web element that is inserted as parameter
